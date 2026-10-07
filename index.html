@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>GOJO WHATSAPP</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#f5d76e">
+
+<!-- OneSignal SDK -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "8f7b6967-299e-416d-877a-e70b94814a76",
+      safari_web_id: "",
+      allowLocalhostAsSecureOrigin: true,
+      notifyButton: { enable: false }
+    });
+  });
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Courier New','Lucida Console',monospace;-webkit-tap-highlight-color:transparent}
+body{background:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0}
+.app{width:100%;max-width:420px;height:100vh;max-height:860px;background:#fff;display:flex;flex-direction:column;position:relative;overflow:hidden;border:2px solid #1a1a1a}
+.status-bar{background:#fff;padding:8px 16px 6px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600;color:#1a1a1a}
+.status-bar .left,.status-bar .right{display:flex;gap:8px}
+.header{background:#f5d76e;padding:10px 16px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #1a1a1a}
+.header .brand{font-size:18px;font-weight:800;letter-spacing:1.5px;color:#1a1a1a;text-transform:uppercase}
+.header .clock-box{background:#fff;border:2px solid #1a1a1a;border-radius:20px;padding:6px 14px;display:flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:#1a1a1a;box-shadow:2px 2px 0 #1a1a1a}
+.content{flex:1;overflow-y:auto;padding:14px 14px 90px;background:#fff;scrollbar-width:none}
+.content::-webkit-scrollbar{display:none}
+.search{background:#fff;border:2.5px solid #1a1a1a;border-radius:30px;padding:12px 18px;display:flex;align-items:center;gap:10px;margin-bottom:12px;box-shadow:3px 3px 0 #1a1a1a}
+.search svg{width:20px;height:20px;stroke:#1a1a1a;flex-shrink:0}
+.search input{border:none;background:transparent;outline:none;font-size:14px;color:#1a1a1a;width:100%;letter-spacing:.5px;font-family:'Courier New',monospace}
+.search input::placeholder{color:#1a1a1a;opacity:.7}
+.banner{background:#f5d76e;border:2.5px solid #1a1a1a;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:16px;box-shadow:3px 3px 0 #1a1a1a}
+.banner-icon{background:#f04e4e;border:2px solid #1a1a1a;border-radius:6px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.banner-icon svg{width:18px;height:18px;fill:#fff}
+.banner-text{font-size:13px;font-weight:700;color:#1a1a1a;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.banner-text .star{color:#f04e4e;font-size:16px}
+.stories{display:flex;gap:14px;overflow-x:auto;padding-bottom:14px;margin-bottom:4px;scrollbar-width:none}
+.stories::-webkit-scrollbar{display:none}
+.story-item{display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0;width:68px;cursor:pointer}
+.story-avatar{width:62px;height:62px;border-radius:50%;border:2.5px solid #f04e4e;padding:3px;position:relative;background:#fff}
+.story-avatar .inner{width:100%;height:100%;border-radius:50%;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#f5d76e;border:2px solid #1a1a1a;overflow:hidden}
+.story-avatar .inner img{width:100%;height:100%;object-fit:cover}
+.story-avatar .plus{position:absolute;bottom:-2px;right:-2px;background:#f04e4e;border:2px solid #1a1a1a;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff}
+.story-name{font-size:10px;font-weight:700;color:#1a1a1a;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
+.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:14px;margin-bottom:10px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filter-btn{background:#fff;border:2.5px solid #1a1a1a;border-radius:30px;padding:8px 16px;font-size:12px;font-weight:700;color:#1a1a1a;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:2px 2px 0 #1a1a1a;font-family:'Courier New',monospace}
+.filter-btn.active{background:#f04e4e;color:#fff}
+.filter-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5}
+.chat-list{display:flex;flex-direction:column;gap:10px}
+.chat-item{background:#fff;border:2.5px solid #1a1a1a;border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:12px;box-shadow:3px 3px 0 #1a1a1a;cursor:pointer}
+.chat-avatar{width:48px;height:48px;border-radius:50%;border:2.5px solid #1a1a1a;background:#f5d76e;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:800;font-size:18px;color:#1a1a1a;overflow:hidden}
+.chat-info{flex:1;min-width:0}
+.chat-name{font-size:15px;font-weight:800;color:#1a1a1a;margin-bottom:2px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.chat-name .phone{font-size:10px;font-weight:600;opacity:.6}
+.chat-name .verified-badge{width:12px;height:12px;font-size:9px;margin-left:3px}
+.chat-preview{font-size:12px;color:#1a1a1a;opacity:.75;font-weight:600}
+.empty-state{text-align:center;padding:40px 20px;color:#1a1a1a;opacity:.5;font-size:12px;font-weight:700;line-height:1.6}
+.fab{position:absolute;bottom:90px;right:20px;width:58px;height:58px;background:#f04e4e;border:2.5px solid #1a1a1a;border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:4px 4px 0 #1a1a1a;cursor:pointer;z-index:10}
+.fab svg{width:28px;height:28px;stroke:#fff;stroke-width:3;fill:none}
+.bottom-nav{position:absolute;bottom:0;left:0;right:0;background:#fff;border-top:2.5px solid #1a1a1a;display:flex;justify-content:space-around;padding:8px 4px 10px;z-index:9999;transition:transform .25s ease}
+.bottom-nav.hidden{transform:translateY(110%)}
+body.login-active .bottom-nav{transform:translateY(110%)}
+body.login-active .fab{display:none !important}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 10px;border-radius:20px;flex:1}
+.nav-item.active{background:#f5d76e;border:2px solid #1a1a1a;box-shadow:2px 2px 0 #1a1a1a;padding:4px 18px}
+.nav-item svg{width:22px;height:22px;stroke:#1a1a1a;fill:none;stroke-width:2}
+.nav-label{font-size:10px;font-weight:800;color:#1a1a1a}
+.screen{position:absolute;inset:0;background:#fdf3d0;display:none;flex-direction:column;z-index:300}
+.screen.active{display:flex}
+.login-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 24px}
+.login-logo{width:90px;height:90px;background:#f5d76e;border:3px solid #1a1a1a;border-radius:24px;display:flex;align-items:center;justify-content:center;box-shadow:5px 5px 0 #1a1a1a;margin-bottom:24px}
+.login-logo svg{width:50px;height:50px;stroke:#1a1a1a;stroke-width:2.5;fill:none}
+.login-title{font-size:22px;font-weight:800;color:#1a1a1a;margin-bottom:6px}
+.login-sub{font-size:12px;color:#1a1a1a;opacity:.7;text-align:center;margin-bottom:30px;font-weight:600;line-height:1.5}
+.field-label{width:100%;font-size:11px;font-weight:800;color:#1a1a1a;margin-bottom:6px}
+.field-input{width:100%;background:#fff;border:2.5px solid #1a1a1a;border-radius:14px;padding:14px 16px;font-size:15px;font-family:'Courier New',monospace;font-weight:700;color:#1a1a1a;outline:none;margin-bottom:16px;box-shadow:3px 3px 0 #1a1a1a}
+.primary-btn{width:100%;background:#f04e4e;color:#fff;border:2.5px solid #1a1a1a;border-radius:14px;padding:14px;font-size:14px;font-weight:800;font-family:'Courier New',monospace;text-transform:uppercase;cursor:pointer;box-shadow:4px 4px 0 #1a1a1a}
+.primary-btn:disabled{opacity:.5}
+.error-msg{color:#f04e4e;font-size:11px;font-weight:700;margin-bottom:12px;text-align:center;min-height:14px}
+.story-upload-screen{position:fixed;inset:0;background:#f04e4e;display:none;flex-direction:column;z-index:1000}
+.story-upload-screen.active{display:flex}
+.story-topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;flex-shrink:0}
+.story-close-btn,.story-palette-btn{background:transparent;border:none;cursor:pointer;width:38px;height:38px;display:flex;align-items:center;justify-content:center}
+.story-close-btn svg{width:26px;height:26px;stroke:#fff;stroke-width:2.8;fill:none}
+.story-palette-btn svg{width:28px;height:28px;stroke:#fff;stroke-width:2.2;fill:none}
+.story-main{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;position:relative;overflow:hidden}
+.story-text-input{width:100%;max-width:340px;background:transparent;border:none;outline:none;resize:none;font-size:22px;font-weight:700;color:#fff;font-family:'Courier New',monospace;text-align:center;line-height:1.4;caret-color:#fff}
+.story-text-input::placeholder{color:rgba(255,255,255,.75)}
+.story-char-count{position:absolute;right:24px;bottom:20px;color:#fff;font-size:12px;font-weight:700;opacity:.85}
+.story-preview-media{max-width:100%;max-height:60vh;border:3px solid #1a1a1a;border-radius:16px}
+.story-caption-input{width:100%;max-width:340px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.6);border-radius:12px;padding:10px 14px;margin-top:16px;color:#fff;font-size:13px;font-weight:600;font-family:'Courier New',monospace;outline:none}
+.story-caption-input::placeholder{color:rgba(255,255,255,.7)}
+.story-privacy-row{display:flex;gap:8px;padding:0 14px 12px;overflow-x:auto;flex-shrink:0}
+.privacy-pill{background:rgba(255,255,255,.2);border:2px solid #1a1a1a;border-radius:30px;padding:10px 16px;font-size:12px;font-weight:800;color:#fff;font-family:'Courier New',monospace;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:2px 2px 0 #1a1a1a}
+.privacy-pill.active{background:#f5d76e;color:#1a1a1a}
+.privacy-pill svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.2;fill:none}
+.story-mode-row{display:flex;gap:8px;padding:0 14px 16px;align-items:center;flex-shrink:0;overflow-x:auto}
+.mode-pill{background:rgba(255,255,255,.2);border:2px solid #1a1a1a;border-radius:30px;padding:10px 18px;font-size:12px;font-weight:800;color:#fff;font-family:'Courier New',monospace;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.mode-pill svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.2;fill:none}
+.mode-pill.active{background:#fff;color:#1a1a1a}
+.send-story-btn{background:#f04e4e;border:2.5px solid #1a1a1a;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-left:auto;box-shadow:3px 3px 0 #1a1a1a;flex-shrink:0}
+.send-story-btn svg{width:24px;height:24px;stroke:#fff;stroke-width:2.5;fill:none}
+.story-viewer{position:fixed;inset:0;background:#000;display:none;flex-direction:column;z-index:1100}
+.story-viewer.active{display:flex}
+.story-viewer-progress{display:flex;gap:4px;padding:12px 12px 0;flex-shrink:0}
+.story-viewer-progress .bar{flex:1;height:3px;background:rgba(255,255,255,.35);border-radius:2px;overflow:hidden}
+.story-viewer-progress .bar.done{background:#fff}
+.story-viewer-progress .bar.active .fill{display:block;height:100%;background:#fff;animation:storyProgress 5s linear forwards}
+.story-viewer-progress .fill{display:none;height:100%;background:#fff}
+@keyframes storyProgress{from{width:0}to{width:100%}}
+.story-viewer-header{display:flex;align-items:center;gap:10px;padding:12px 14px;flex-shrink:0}
+.story-viewer-avatar{width:36px;height:36px;border-radius:50%;border:2px solid #fff;background:#f5d76e;display:flex;align-items:center;justify-content:center;font-weight:800;color:#1a1a1a;overflow:hidden;flex-shrink:0;font-size:14px}
+.story-viewer-avatar img{width:100%;height:100%;object-fit:cover}
+.story-viewer-info{flex:1;min-width:0}
+.story-viewer-name{font-size:13px;font-weight:800;color:#fff}
+.story-viewer-time{font-size:10px;color:rgba(255,255,255,.7);font-weight:600}
+.story-viewer-close{background:transparent;border:none;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.story-viewer-close svg{width:24px;height:24px;stroke:#fff;stroke-width:2.5;fill:none}
+.story-viewer-content{flex:1;display:flex;align-items:center;justify-content:center;padding:20px;position:relative;overflow:hidden}
+.story-viewer-text{font-size:26px;font-weight:800;color:#fff;font-family:'Courier New',monospace;text-align:center;line-height:1.4;max-width:90%;word-break:break-word}
+.story-viewer-media{max-width:100%;max-height:100%;object-fit:contain}
+.story-viewer-caption{position:absolute;bottom:20px;left:20px;right:20px;color:#fff;font-size:14px;font-weight:600;text-align:center;padding:8px 14px;background:rgba(0,0,0,.5);border-radius:20px;font-family:'Courier New',monospace}
+.story-viewer-nav{position:absolute;top:0;bottom:0;width:33%;cursor:pointer}
+.story-viewer-nav.left{left:0}
+.story-viewer-nav.right{right:0}
+.story-viewer-footer{display:flex;align-items:center;gap:14px;padding:12px 16px 20px;flex-shrink:0;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.story-action-btn{background:transparent;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;color:#fff;font-family:'Courier New',monospace;font-size:13px;font-weight:800;padding:6px 8px}
+.story-action-btn svg{width:24px;height:24px;stroke:#fff;stroke-width:2.2;fill:none}
+.story-action-btn.loved svg{fill:#f04e4e;stroke:#f04e4e}
+.story-action-btn.loved{color:#f04e4e}
+.story-action-btn.repost-active svg{stroke:#f5d76e;fill:#f5d76e}
+.story-action-btn.repost-active{color:#f5d76e}
+.story-viewer-footer .spacer{flex:1}
+.viewer-modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:1200;padding:20px}
+.viewer-modal.active{display:flex}
+.viewer-modal-box{background:#fdf3d0;border:3px solid #1a1a1a;border-radius:20px;width:100%;max-width:360px;max-height:70vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:6px 6px 0 #1a1a1a}
+.viewer-modal-header{background:#f5d76e;padding:14px 16px;border-bottom:2.5px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center}
+.viewer-modal-title{font-size:14px;font-weight:800;color:#1a1a1a;text-transform:uppercase}
+.viewer-modal-close{background:transparent;border:none;cursor:pointer;width:28px;height:28px;display:flex;align-items:center;justify-content:center}
+.viewer-modal-close svg{width:22px;height:22px;stroke:#1a1a1a;stroke-width:2.5;fill:none}
+.viewer-modal-list{flex:1;overflow-y:auto;padding:10px}
+.viewer-row{display:flex;align-items:center;gap:10px;padding:10px 8px;border-bottom:1.5px dashed rgba(0,0,0,.12)}
+.viewer-row:last-child{border-bottom:none}
+.viewer-row-avatar{width:38px;height:38px;border-radius:50%;border:2px solid #1a1a1a;background:#f5d76e;display:flex;align-items:center;justify-content:center;font-weight:800;color:#1a1a1a;font-size:15px;flex-shrink:0;overflow:hidden}
+.viewer-row-avatar img{width:100%;height:100%;object-fit:cover}
+.viewer-row-info{flex:1;min-width:0}
+.viewer-row-name{font-size:13px;font-weight:800;color:#1a1a1a}
+.viewer-row-time{font-size:10px;color:#1a1a1a;opacity:.6;font-weight:600}
+.viewer-row-emoji{font-size:20px;flex-shrink:0}
+.viewer-empty{text-align:center;padding:30px 20px;font-size:12px;font-weight:700;color:#1a1a1a;opacity:.5}
+.add-contact-screen{position:absolute;inset:0;background:#fdf3d0;display:none;flex-direction:column;z-index:250}
+.add-contact-screen.active{display:flex}
+.add-contact-topbar{background:#f5d76e;padding:14px 16px;display:flex;align-items:center;gap:14px;border-bottom:2.5px solid #1a1a1a}
+.add-contact-topbar .back-btn{background:transparent;border:none;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;padding:0}
+.add-contact-topbar .back-btn svg{width:26px;height:26px;stroke:#1a1a1a;stroke-width:2.5;fill:none}
+.add-contact-topbar .title{flex:1;text-align:center;font-size:18px;font-weight:800;color:#1a1a1a;padding-right:32px}
+.add-contact-body{flex:1;padding:20px 16px;overflow-y:auto}
+.search-row{display:flex;gap:10px;align-items:center;margin-bottom:24px}
+.search-input-wrap{flex:1;background:#fff;border:2.5px solid #1a1a1a;border-radius:30px;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:3px 3px 0 #1a1a1a}
+.search-input-wrap svg{width:20px;height:20px;stroke:#1a1a1a;fill:none;flex-shrink:0}
+.search-input-wrap input{border:none;background:transparent;outline:none;font-size:14px;font-weight:600;color:#1a1a1a;width:100%;font-family:'Courier New',monospace}
+.search-btn{background:#f5d76e;border:2.5px solid #1a1a1a;border-radius:30px;padding:12px 24px;font-size:14px;font-weight:800;font-family:'Courier New',monospace;color:#1a1a1a;cursor:pointer;box-shadow:3px 3px 0 #1a1a1a;flex-shrink:0}
+.add-contact-empty{text-align:center;padding:60px 20px;font-size:12px;font-weight:700;color:#1a1a1a;opacity:.5;line-height:1.6}
+.result-card{background:#fff;border:2.5px solid #1a1a1a;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:3px 3px 0 #1a1a1a;margin-bottom:10px}
+.result-avatar{width:52px;height:52px;border-radius:50%;border:2.5px solid #1a1a1a;background:#f5d76e;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#1a1a1a;flex-shrink:0;overflow:hidden}
+.result-avatar img{width:100%;height:100%;object-fit:cover}
+.result-info{flex:1;min-width:0}
+.result-name{font-size:15px;font-weight:800;color:#1a1a1a;margin-bottom:3px}
+.result-phone{font-size:11px;font-weight:600;color:#1a1a1a;opacity:.65}
+.result-action{background:#f04e4e;border:2px solid #1a1a1a;border-radius:20px;padding:8px 16px;font-size:11px;font-weight:800;font-family:'Courier New',monospace;color:#fff;cursor:pointer;box-shadow:2px 2px 0 #1a1a1a;flex-shrink:0}
+.result-action.saved{background:#f5d76e;color:#1a1a1a}
+.chat-room{position:absolute;inset:0;background:#fdf3d0;display:none;flex-direction:column;z-index:100}
+.chat-room.active{display:flex}
+.chat-room-header{background:#f5d76e;padding:12px 16px;display:flex;align-items:center;gap:12px;border-bottom:2.5px solid #1a1a1a}
+.back-btn-2{background:#fff;border:2px solid #1a1a1a;border-radius:10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:2px 2px 0 #1a1a1a}
+.back-btn-2 svg{width:20px;height:20px;stroke:#1a1a1a;stroke-width:2.5;fill:none}
+.chat-room-avatar{width:42px;height:42px;border-radius:50%;border:2.5px solid #1a1a1a;background:#f04e4e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;flex-shrink:0;overflow:hidden}
+.chat-room-info{flex:1;min-width:0}
+.chat-room-name{font-size:15px;font-weight:800;color:#1a1a1a;display:flex;align-items:center;gap:2px}
+.chat-room-name .verified-badge{width:14px;height:14px;font-size:10px;margin-left:5px}
+.chat-room-status{font-size:11px;color:#1a1a1a;opacity:.7;font-weight:600}
+.messages-area{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:8px;scrollbar-width:none}
+.messages-area::-webkit-scrollbar{display:none}
+.message{max-width:78%;padding:9px 13px;border-radius:14px;font-size:13px;font-weight:600;word-wrap:break-word;line-height:1.4}
+.message.own{align-self:flex-end;background:#f5d76e;border:2px solid #1a1a1a;border-bottom-right-radius:4px;box-shadow:2px 2px 0 #1a1a1a}
+.message.other{align-self:flex-start;background:#fff;border:2px solid #1a1a1a;border-bottom-left-radius:4px;box-shadow:2px 2px 0 #1a1a1a}
+.message .sender{font-size:10px;font-weight:800;color:#f04e4e;margin-bottom:3px;text-transform:uppercase;display:flex;align-items:center;gap:2px}
+.message .sender .verified-badge{width:10px;height:10px;font-size:8px;margin-left:3px}
+.message .time{font-size:9px;color:#1a1a1a;opacity:.6;margin-top:4px;text-align:right;font-weight:700}
+.chat-input-area{background:#fff;border-top:2.5px solid #1a1a1a;padding:10px 12px;display:flex;gap:8px;align-items:center}
+.chat-input-area input{flex:1;background:#fdf3d0;border:2.5px solid #1a1a1a;border-radius:24px;padding:11px 16px;font-size:13px;font-family:'Courier New',monospace;font-weight:600;color:#1a1a1a;outline:none}
+.send-btn{background:#f04e4e;border:2.5px solid #1a1a1a;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:2px 2px 0 #1a1a1a;flex-shrink:0}
+.send-btn svg{width:20px;height:20px;stroke:#fff;stroke-width:2.5;fill:none}
+.loading{text-align:center;padding:20px;font-size:12px;color:#1a1a1a;opacity:.6;font-weight:700}
+.profile-screen{position:absolute;top:0;left:0;right:0;bottom:62px;background:#fdf3d0;display:none;flex-direction:column;z-index:150;overflow-y:auto}
+.profile-screen.active{display:flex}
+.profile-topbar{background:#f5d76e;padding:14px 16px;text-align:center;border-bottom:2.5px solid #1a1a1a;font-size:18px;font-weight:800;color:#1a1a1a;position:sticky;top:0;z-index:10}
+.profile-card{background:#fff;border:2.5px solid #1a1a1a;border-radius:20px;margin:14px;overflow:visible;box-shadow:3px 3px 0 #1a1a1a}
+.profile-banner{height:110px;background:#f5d76e;position:relative;border-bottom:2.5px solid #1a1a1a;background-size:cover;background-position:center;border-radius:18px 18px 0 0;overflow:hidden}
+.profile-banner .camera-btn{position:absolute;top:10px;right:10px;background:#fff;border:2px solid #1a1a1a;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:2px 2px 0 #1a1a1a;z-index:5}
+.profile-banner .camera-btn svg{width:20px;height:20px;stroke:#1a1a1a;fill:none}
+.profile-avatar-wrap{display:flex;justify-content:center;margin-top:-45px;position:relative;z-index:3}
+.profile-avatar{width:90px;height:90px;border-radius:50%;background:#f5d76e;border:3px solid #1a1a1a;display:flex;align-items:center;justify-content:center;box-shadow:3px 3px 0 #1a1a1a;cursor:pointer;overflow:hidden;position:relative}
+.profile-avatar svg{width:50px;height:50px;stroke:#f04e4e;stroke-width:2.2;fill:#f04e4e}
+.profile-avatar img{width:100%;height:100%;object-fit:cover}
+.profile-avatar .edit-badge{position:absolute;bottom:0;right:0;background:#f04e4e;border:2px solid #1a1a1a;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center}
+.profile-avatar .edit-badge svg{width:13px;height:13px;stroke:#fff;fill:none}
+.profile-name-wrap{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0 4px;padding:0 16px}
+.profile-name{font-size:20px;font-weight:800;color:#1a1a1a;text-align:center;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px}
+.profile-name .verified-badge{width:18px;height:18px;font-size:13px;margin-left:6px}
+.edit-name-btn{background:transparent;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center}
+.edit-name-btn svg{width:18px;height:18px;stroke:#1a1a1a;stroke-width:2.5;fill:none}
+.profile-phone{text-align:center;font-size:13px;font-weight:600;color:#1a1a1a;opacity:.7;margin-bottom:16px}
+.profile-btn-edit{margin:0 16px 12px;background:#fff;border:2.5px solid #1a1a1a;border-radius:30px;padding:12px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:800;color:#1a1a1a;cursor:pointer;box-shadow:3px 3px 0 #1a1a1a;font-family:'Courier New',monospace}
+.profile-btn-edit svg{width:16px;height:16px;stroke:#1a1a1a;fill:none}
+.profile-btn-premium{margin:0 16px 18px;background:#3b9ae1;color:#fff;border:2.5px solid #1a1a1a;border-radius:30px;padding:12px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:700;cursor:pointer;box-shadow:3px 3px 0 #1a1a1a;font-family:'Courier New',monospace}
+.profile-btn-premium svg{width:18px;height:18px;stroke:#fff;fill:none;flex-shrink:0}
+.menu-section-label{font-size:11px;font-weight:800;color:#1a1a1a;opacity:.5;letter-spacing:1.5px;text-transform:uppercase;padding:6px 22px 8px}
+.menu-box{background:#fff;border:2.5px solid #1a1a1a;border-radius:18px;margin:0 14px 12px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:3px 3px 0 #1a1a1a}
+.menu-box .menu-icon{width:34px;height:34px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.menu-box .menu-icon svg{width:24px;height:24px;stroke:#f04e4e;fill:none;stroke-width:2.2}
+.menu-box .menu-content{flex:1;min-width:0}
+.menu-box .menu-title{font-size:14px;font-weight:800;color:#1a1a1a;margin-bottom:3px}
+.menu-box .menu-desc{font-size:11px;color:#1a1a1a;opacity:.7;font-weight:600;line-height:1.4}
+.menu-box.clickable{cursor:pointer}
+.menu-box.clickable:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #1a1a1a}
+.menu-box .menu-arrow{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.menu-box .menu-arrow svg{width:20px;height:20px;stroke:#1a1a1a;stroke-width:2.5;fill:none}
+.menu-box .menu-icon.logout-icon svg{stroke:#f04e4e}
+.menu-box .menu-title.logout-title{color:#f04e4e}
+.switch{width:54px;height:30px;background:#fff;border:2.5px solid #1a1a1a;border-radius:30px;position:relative;cursor:pointer;flex-shrink:0}
+.switch .knob{position:absolute;top:1px;left:1px;width:22px;height:22px;background:#1a1a1a;border:2px solid #1a1a1a;border-radius:50%;transition:left .2s}
+.switch.on{background:#f5d76e}
+.switch.on .knob{left:26px}
+.modal{position:absolute;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:400;padding:20px}
+.modal.active{display:flex}
+.modal-box{background:#fff;border:3px solid #1a1a1a;border-radius:20px;padding:22px 20px;width:100%;max-width:340px;box-shadow:6px 6px 0 #1a1a1a}
+.modal-title{font-size:16px;font-weight:800;color:#1a1a1a;text-transform:uppercase;margin-bottom:4px;text-align:center}
+.modal-sub{font-size:11px;color:#1a1a1a;opacity:.7;text-align:center;margin-bottom:16px;font-weight:600}
+.modal-btns{display:flex;gap:8px;margin-top:4px}
+.modal-btns .primary-btn{flex:1}
+.cancel-btn{flex:1;background:#fff;color:#1a1a1a;border:2.5px solid #1a1a1a;border-radius:14px;padding:14px;font-size:14px;font-weight:800;font-family:'Courier New',monospace;text-transform:uppercase;cursor:pointer;box-shadow:4px 4px 0 #1a1a1a}
+.edit-name-input{width:100%;background:#fdf3d0;border:2.5px solid #1a1a1a;border-radius:14px;padding:14px 16px;font-size:15px;font-family:'Courier New',monospace;font-weight:700;color:#1a1a1a;outline:none;margin-bottom:16px;box-shadow:3px 3px 0 #1a1a1a}
+.verified-badge{display:inline-flex;align-items:center;justify-content:center;background:#3b9ae1;color:#fff;width:14px;height:14px;border-radius:50%;font-size:10px;font-weight:900;line-height:1;margin-left:4px;vertical-align:middle;border:1.5px solid #1a1a1a;flex-shrink:0}
+::-webkit-scrollbar{display:none}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+<div class="status-bar">
+<div class="left"><span>11.02</span></div>
+<div class="right"><span>156</span><span>B/S</span><span>4G</span></div>
+</div>
+
+<div class="header">
+<div class="brand">GOJO WHATSAPP</div>
+<div class="clock-box">
+<svg viewBox="0 0 24 24" width="14" height="14" stroke="#1a1a1a" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+<span id="clock">11:02:39</span>
+</div>
+</div>
+
+<div class="content" id="mainContent">
+<div class="search">
+<svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+<input type="text" id="searchInput" placeholder="Cari chat, kontak, atau nomor...">
+</div>
+
+<div class="banner">
+<div class="banner-icon">
+<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+</div>
+<div class="banner-text">
+<span id="bannerName">Selamat datang</span>
+<span class="star">★</span>
+<span>Tap + untuk tambah kontak</span>
+</div>
+</div>
+
+<div class="stories" id="storiesContainer"></div>
+
+<div class="filters">
+<div class="filter-btn active"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Semua</div>
+<div class="filter-btn"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Pribadi</div>
+<div class="filter-btn"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Grup</div>
+<div class="filter-btn"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>Channel</div>
+</div>
+
+<div class="chat-list" id="chatList">
+<div class="empty-state">Belum ada kontak.<br>Tap tombol + untuk menambahkan kontak.</div>
+</div>
+</div>
+
+<div class="fab" id="fabBtn">
+<svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+</div>
+
+<div class="screen" id="loginScreen">
+<div class="login-wrap">
+<div class="login-logo"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+<div class="login-title">Masuk</div>
+<div class="login-sub">Masukkan nomor HP Anda<br>untuk mulai menggunakan GOJO WhatsApp</div>
+<div class="field-label">Nomor HP</div>
+<input type="tel" class="field-input" id="phoneInput" placeholder="08123456789" autocomplete="off" inputmode="numeric">
+<div class="error-msg" id="loginError"></div>
+<button class="primary-btn" id="loginSubmit">Masuk</button>
+</div>
+</div>
+
+<div class="story-upload-screen" id="storyUploadScreen">
+<div class="story-topbar">
+<button class="story-close-btn" id="storyCloseBtn"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+<button class="story-palette-btn" id="storyPaletteBtn"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20 4 4 0 0 0 0-8 4 4 0 0 1 0-8 4 4 0 0 0 0-4z"/><circle cx="8" cy="9" r="1.5" fill="currentColor"/><circle cx="12" cy="7" r="1.5" fill="currentColor"/><circle cx="16" cy="9" r="1.5" fill="currentColor"/></svg></button>
+</div>
+<div class="story-main">
+<div id="storyTextMode">
+<textarea class="story-text-input" id="storyTextInput" maxlength="20" placeholder="Ketik status (maks 20 karakter)"></textarea>
+<div class="story-char-count" id="storyCharCount">0/20</div>
+</div>
+<div id="storyMediaMode" style="display:none; text-align:center;">
+<div id="storyMediaPreview"></div>
+<input type="text" class="story-caption-input" id="storyCaptionInput" placeholder="Tambah caption (opsional)" maxlength="100">
+</div>
+</div>
+<div class="story-privacy-row">
+<div class="privacy-pill active" data-privacy="public"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Publik</div>
+<div class="privacy-pill" data-privacy="contacts"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Kontak saya</div>
+<div class="privacy-pill" data-privacy="except"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>Kecuali...</div>
+</div>
+<div class="story-mode-row">
+<div class="mode-pill active" data-mode="text"><svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>Teks</div>
+<div class="mode-pill" data-mode="image"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Foto</div>
+<div class="mode-pill" data-mode="video"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Video</div>
+<div class="mode-pill" data-mode="audio"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>Audio</div>
+<button class="send-story-btn" id="sendStoryBtn"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+</div>
+</div>
+
+<input type="file" id="storyImageInput" accept="image/*" style="display:none;">
+<input type="file" id="storyVideoInput" accept="video/*" style="display:none;">
+
+<div class="story-viewer" id="storyViewer">
+<div class="story-viewer-progress" id="storyViewerProgress"></div>
+<div class="story-viewer-header">
+<div class="story-viewer-avatar" id="storyViewerAvatar">U</div>
+<div class="story-viewer-info">
+<div class="story-viewer-name" id="storyViewerName">User</div>
+<div class="story-viewer-time" id="storyViewerTime">Baru saja</div>
+</div>
+<button class="story-viewer-close" id="storyViewerClose"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+</div>
+<div class="story-viewer-content">
+<div class="story-viewer-nav left" id="storyViewerPrev"></div>
+<div class="story-viewer-nav right" id="storyViewerNext"></div>
+<div id="storyViewerContentInner" style="width:100%; text-align:center;"></div>
+</div>
+<div class="story-viewer-footer">
+<button class="story-action-btn" id="viewersBtn"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><span id="viewersCount">0</span></button>
+<button class="story-action-btn" id="loveBtn"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span id="lovesCount">0</span></button>
+<button class="story-action-btn" id="repostBtn"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg><span id="repostsCount">0</span></button>
+<div class="spacer"></div>
+<button class="story-action-btn" id="deleteStoryBtn" style="display:none;"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
+</div>
+</div>
+
+<div class="viewer-modal" id="viewerListModal">
+<div class="viewer-modal-box">
+<div class="viewer-modal-header">
+<div class="viewer-modal-title" id="viewerModalTitle">Dilihat oleh</div>
+<button class="viewer-modal-close" id="viewerModalClose"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+</div>
+<div class="viewer-modal-list" id="viewerModalList"></div>
+</div>
+</div>
+
+<div class="add-contact-screen" id="addContactScreen">
+<div class="add-contact-topbar">
+<button class="back-btn" id="backFromAddContact"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+<div class="title">Tambah kontak</div>
+</div>
+<div class="add-contact-body">
+<div class="search-row">
+<div class="search-input-wrap">
+<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+<input type="tel" id="contactSearchInput" placeholder="Nomor (0812... atau +62812...)" inputmode="numeric">
+</div>
+<button class="search-btn" id="searchContactBtn">Cari</button>
+</div>
+<div id="contactSearchResult"><div class="add-contact-empty">Masukkan nomor user lain untuk mulai chat</div></div>
+</div>
+</div>
+
+<div class="profile-screen" id="profileScreen">
+<div class="profile-topbar">Profil</div>
+<div class="profile-card">
+<div class="profile-banner" id="profileBanner">
+<div class="camera-btn" id="changeBannerBtn"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+</div>
+<div class="profile-avatar-wrap">
+<div class="profile-avatar" id="profileAvatar">
+<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a6 6 0 0 1 12 0v2"/></svg>
+<div class="edit-badge"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+</div>
+</div>
+<div class="profile-name-wrap">
+<div class="profile-name" id="profileNameDisplay">User</div>
+<button class="edit-name-btn" id="editNameBtn"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+</div>
+<div class="profile-phone" id="profilePhoneDisplay">+62 8xx-xxxx-xxxx</div>
+<div class="profile-btn-edit" id="editProfileBtn">
+<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+Edit Profil
+</div>
+<div class="profile-btn-premium" id="premiumBtn">
+<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+Beli Centang Biru Premium — Rp5.000/bulan
+</div>
+</div>
+<div class="menu-box" id="addContactFromProfile">
+<div class="menu-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div>
+<div class="menu-content"><div class="menu-title">Tambah Kontak</div><div class="menu-desc">Cari user lain dengan nomor HP</div></div>
+</div>
+<div class="menu-box">
+<div class="menu-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+<div class="menu-content"><div class="menu-title">Profil Publik</div><div class="menu-desc">Khusus akun centang biru</div></div>
+</div>
+<div class="menu-section-label">Privasi</div>
+<div class="menu-box">
+<div class="menu-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+<div class="menu-content"><div class="menu-title">Tampilkan Terakhir Dilihat</div><div class="menu-desc">Orang lain bisa lihat kapan kamu terakhir online</div></div>
+<div class="switch on" id="switchLastSeen"><div class="knob"></div></div>
+</div>
+<div class="menu-box">
+<div class="menu-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+<div class="menu-content"><div class="menu-title">Nomor Private</div><div class="menu-desc">Nomormu terlihat oleh kontak & orang yang mencarimu</div></div>
+<div class="switch on" id="switchPrivateNumber"><div class="knob"></div></div>
+</div>
+<div class="menu-section-label">Akun</div>
+<div class="menu-box clickable" id="logoutMenuBtn">
+<div class="menu-icon logout-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></div>
+<div class="menu-content"><div class="menu-title logout-title">Keluar</div></div>
+<div class="menu-arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+</div>
+<div style="height: 20px;"></div>
+</div>
+
+<div class="chat-room" id="chatRoom">
+<div class="chat-room-header">
+<div class="back-btn-2" id="backBtn"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div>
+<div class="chat-room-avatar" id="roomAvatar">D</div>
+<div class="chat-room-info">
+<div class="chat-room-name" id="roomName">Kontak</div>
+<div class="chat-room-status" id="roomStatus">Online</div>
+</div>
+</div>
+<div class="messages-area" id="messagesArea"><div class="loading">Memuat pesan...</div></div>
+<div class="chat-input-area">
+<input type="text" id="messageInput" placeholder="Ketik pesan..." autocomplete="off">
+<div class="send-btn" id="sendBtn"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+</div>
+</div>
+
+<div class="modal" id="editNameModal">
+<div class="modal-box">
+<div class="modal-title">Ubah Nama</div>
+<div class="modal-sub">Masukkan nama baru Anda</div>
+<div class="field-label">Nama</div>
+<input type="text" class="edit-name-input" id="newNameInput" placeholder="Nama baru" maxlength="25">
+<div class="error-msg" id="editNameError"></div>
+<div class="modal-btns">
+<button class="cancel-btn" id="cancelEditName">Batal</button>
+<button class="primary-btn" id="saveNewName">Simpan</button>
+</div>
+</div>
+</div>
+
+<div class="modal" id="editProfileModal">
+<div class="modal-box">
+<div class="modal-title">Edit Profil</div>
+<div class="modal-sub">Ganti foto profil & wallpaper</div>
+<button class="primary-btn" id="pickAvatarBtn" style="margin-bottom:10px;">Ganti Foto Profil</button>
+<button class="cancel-btn" id="pickBannerBtn" style="width:100%; margin-bottom:10px;">Ganti Wallpaper</button>
+<button class="cancel-btn" id="closeEditProfile" style="width:100%;">Tutup</button>
+</div>
+</div>
+
+<input type="file" id="avatarFileInput" accept="image/*" style="display:none;">
+<input type="file" id="bannerFileInput" accept="image/*" style="display:none;">
+
+<div class="bottom-nav" id="bottomNav">
+<div class="nav-item active" id="navChat"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="nav-label">Chat</span></div>
+<div class="nav-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span class="nav-label">Pembaruan</span></div>
+<div class="nav-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="nav-label">Panggilan</span></div>
+<div class="nav-item" id="navProfile"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="nav-label">Profil</span></div>
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+"use strict";
+var SUPABASE_URL='https://clwuwnztwindgptrqcyj.supabase.co';
+var SUPABASE_KEY='sb_publishable_IMePSRx259vIjemW-v7CRQ_yP_nbBhE';
+var sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+var currentUser=null,contacts=[],activeChat=null,currentChatChannel=null;
+var allStories=[],groupedStories=[],currentStoryUserIndex=0,currentStoryIndex=0,storyTimer=null,storyRealtimeChannel=null;
+var storyMode='text',storyPrivacy='public',storyMediaFile=null,storyBgColor='#f04e4e';
+var currentStoryViews=[],currentStoryReactions=[],currentStoryReposts=[];
+var BG_COLORS=['#f04e4e','#3b9ae1','#00a884','#f5d76e','#1a1a1a','#8e44ad','#e67e22'];
+
+var $=function(id){return document.getElementById(id)};
+var clockEl=$('clock'),loginScreen=$('loginScreen'),phoneInput=$('phoneInput'),loginError=$('loginError'),loginSubmit=$('loginSubmit');
+var mainContent=$('mainContent'),chatList=$('chatList'),searchInput=$('searchInput'),bannerName=$('bannerName'),storiesContainer=$('storiesContainer');
+var fabBtn=$('fabBtn'),bottomNav=$('bottomNav');
+var addContactScreen=$('addContactScreen'),backFromAddContact=$('backFromAddContact'),contactSearchInput=$('contactSearchInput'),searchContactBtn=$('searchContactBtn'),contactSearchResult=$('contactSearchResult');
+var chatRoom=$('chatRoom'),backBtn=$('backBtn'),roomAvatar=$('roomAvatar'),roomName=$('roomName'),roomStatus=$('roomStatus'),messagesArea=$('messagesArea'),messageInput=$('messageInput'),sendBtn=$('sendBtn');
+var profileScreen=$('profileScreen'),navChat=$('navChat'),navProfile=$('navProfile'),addContactFromProfile=$('addContactFromProfile');
+var premiumBtn=$('premiumBtn'),logoutMenuBtn=$('logoutMenuBtn');
+var profileBanner=$('profileBanner'),profileAvatar=$('profileAvatar'),profileNameDisplay=$('profileNameDisplay'),profilePhoneDisplay=$('profilePhoneDisplay');
+var changeBannerBtn=$('changeBannerBtn'),editNameBtn=$('editNameBtn'),editProfileBtn=$('editProfileBtn');
+var editNameModal=$('editNameModal'),newNameInput=$('newNameInput'),editNameError=$('editNameError'),cancelEditName=$('cancelEditName'),saveNewName=$('saveNewName');
+var editProfileModal=$('editProfileModal'),pickAvatarBtn=$('pickAvatarBtn'),pickBannerBtn=$('pickBannerBtn'),closeEditProfile=$('closeEditProfile');
+var avatarFileInput=$('avatarFileInput'),bannerFileInput=$('bannerFileInput');
+var switchLastSeen=$('switchLastSeen'),switchPrivateNumber=$('switchPrivateNumber');
+var storyUploadScreen=$('storyUploadScreen'),storyCloseBtn=$('storyCloseBtn'),storyPaletteBtn=$('storyPaletteBtn'),storyTextMode=$('storyTextMode'),storyMediaMode=$('storyMediaMode'),storyTextInput=$('storyTextInput'),storyCharCount=$('storyCharCount'),storyMediaPreview=$('storyMediaPreview'),storyCaptionInput=$('storyCaptionInput'),sendStoryBtn=$('sendStoryBtn');
+var storyImageInput=$('storyImageInput'),storyVideoInput=$('storyVideoInput');
+var storyViewer=$('storyViewer'),storyViewerProgress=$('storyViewerProgress'),storyViewerAvatar=$('storyViewerAvatar'),storyViewerName=$('storyViewerName'),storyViewerTime=$('storyViewerTime'),storyViewerClose=$('storyViewerClose'),storyViewerContentInner=$('storyViewerContentInner'),storyViewerPrev=$('storyViewerPrev'),storyViewerNext=$('storyViewerNext');
+var viewersBtn=$('viewersBtn'),viewersCount=$('viewersCount'),loveBtn=$('loveBtn'),lovesCount=$('lovesCount'),repostBtn=$('repostBtn'),repostsCount=$('repostsCount'),deleteStoryBtn=$('deleteStoryBtn');
+var viewerListModal=$('viewerListModal'),viewerModalTitle=$('viewerModalTitle'),viewerModalList=$('viewerModalList'),viewerModalClose=$('viewerModalClose');
+
+function updateClock(){var n=new Date();var h=String(n.getHours()).padStart(2,'0');var m=String(n.getMinutes()).padStart(2,'0');var s=String(n.getSeconds()).padStart(2,'0');clockEl.textContent=h+':'+m+':'+s;}
+updateClock();setInterval(updateClock,1000);
+
+function normPhone(p){return (p||'').replace(/[^0-9]/g,'')}
+function fmtTime(iso){if(!iso)return'';var d=new Date(iso);return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
+function getInit(name){return (name||'?').trim().charAt(0).toUpperCase()||'?'}
+function esc(s){return String(s||'').replace(/[&<>"']/g,function(m){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]})}
+function renderName(name,isPremium){var safe=esc(name||'User');if(isPremium)return safe+' <span class="verified-badge">✓</span>';return safe}
+function fmtPhone(p){if(!p)return'';var x=normPhone(p);if(x.startsWith('62'))return'+'+x;if(x.startsWith('0'))return'+62'+x.slice(1);return'+'+x}
+function timeAgo(iso){if(!iso)return'';var d=(Date.now()-new Date(iso).getTime())/1000;if(d<60)return'Baru saja';if(d<3600)return Math.floor(d/60)+' menit lalu';if(d<86400)return Math.floor(d/3600)+' jam lalu';return Math.floor(d/86400)+' hari lalu'}
+
+function clearSess(){try{localStorage.removeItem('gojo_user')}catch(e){}try{localStorage.removeItem('gojo_user_phone')}catch(e){}}
+function getSavedPhone(){try{return localStorage.getItem('gojo_user_phone')}catch(e){return null}}
+function savePhone(p){try{localStorage.setItem('gojo_user_phone',p)}catch(e){}}
+
+async function refreshUserData(){
+  if(!currentUser)return;
+  try{
+    var res=await sb.from('users').select('*').eq('phone',currentUser.phone).maybeSingle();
+    if(res.error)throw res.error;
+    if(!res.data)return;
+    if(res.data.is_banned){
+      alert('Akun Anda diblokir. Alasan: '+(res.data.banned_reason||'Pelanggaran aturan'));
+      clearSess();currentUser=null;
+      document.body.classList.add('login-active');
+      setTimeout(function(){location.reload()},500);
+      return;
+    }
+    currentUser.name=res.data.name;
+    currentUser.avatar_url=res.data.avatar_url||null;
+    currentUser.banner_url=res.data.banner_url||null;
+    currentUser.is_premium=res.data.is_premium||false;
+    bannerName.textContent=currentUser.name;
+    renderProfile();
+  }catch(e){console.error('refreshUserData',e)}
+}
+
+function hideNav(){bottomNav.classList.add('hidden')}
+function showNav(){bottomNav.classList.remove('hidden')}
+function showChatTab(){mainContent.style.display='block';profileScreen.classList.remove('active');addContactScreen.classList.remove('active');chatRoom.classList.remove('active');fabBtn.style.display='flex';showNav();navChat.classList.add('active');navProfile.classList.remove('active')}
+function showProfileTab(){mainContent.style.display='none';profileScreen.classList.add('active');addContactScreen.classList.remove('active');chatRoom.classList.remove('active');fabBtn.style.display='none';showNav();navChat.classList.remove('active');navProfile.classList.add('active');renderProfile();refreshUserData()}
+function showAddContactTab(){mainContent.style.display='none';profileScreen.classList.remove('active');chatRoom.classList.remove('active');addContactScreen.classList.add('active');fabBtn.style.display='none';hideNav();navChat.classList.remove('active');navProfile.classList.remove('active');contactSearchInput.value='';contactSearchResult.innerHTML='<div class="add-contact-empty">Masukkan nomor user lain untuk mulai chat</div>';setTimeout(function(){contactSearchInput.focus()},200)}
+
+navChat.addEventListener('click',showChatTab);
+navProfile.addEventListener('click',showProfileTab);
+backFromAddContact.addEventListener('click',showChatTab);
+addContactFromProfile.addEventListener('click',showAddContactTab);
+fabBtn.addEventListener('click',showAddContactTab);
+
+premiumBtn.addEventListener('click',function(){
+  var pesan=encodeURIComponent('Halo Admin GOJO WhatsApp, saya mau beli Centang Biru Premium (Rp5.000/bulan). Nomor saya: '+(currentUser?currentUser.phone:'-'));
+  window.open('https://wa.me/6285124080756?text='+pesan,'_blank');
+});
+
+logoutMenuBtn.addEventListener('click',function(){
+  if(!confirm('Keluar dari akun ini?'))return;
+  clearSess();currentUser=null;contacts=[];activeChat=null;
+  if(currentChatChannel){sb.removeChannel(currentChatChannel);currentChatChannel=null}
+  if(storyRealtimeChannel){sb.removeChannel(storyRealtimeChannel);storyRealtimeChannel=null}
+  storyUploadScreen.classList.remove('active');
+  storyViewer.classList.remove('active');
+  editNameModal.classList.remove('active');
+  editProfileModal.classList.remove('active');
+  addContactScreen.classList.remove('active');
+  chatRoom.classList.remove('active');
+  profileScreen.classList.remove('active');
+  mainContent.style.display='block';fabBtn.style.display='flex';showNav();
+  bannerName.textContent='Selamat datang';
+  storiesContainer.innerHTML='';
+  chatList.innerHTML='<div class="empty-state">Belum ada kontak.<br>Tap tombol + untuk menambahkan kontak.</div>';
+  phoneInput.value='';loginError.textContent='';
+  loginScreen.classList.add('active');
+  document.body.classList.add('login-active');
+  setTimeout(function(){phoneInput.focus()},300);
+});
+
+loginSubmit.addEventListener('click',async function(){
+  var phone=normPhone(phoneInput.value);loginError.textContent='';
+  if(phone.length<8){loginError.textContent='Nomor HP minimal 8 digit';return}
+  loginSubmit.disabled=true;loginSubmit.textContent='Memuat...';
+  try{
+    var res=await sb.from('users').select('*').eq('phone',phone).maybeSingle();
+    if(res.error)throw res.error;
+    var ud;
+    if(res.data){ud=res.data}
+    else{
+      var dn='User '+phone.slice(-4);
+      var ins=await sb.from('users').insert([{phone:phone,name:dn}]).select().single();
+      if(ins.error)throw ins.error;ud=ins.data;
+    }
+    if(ud.is_banned){throw new Error('Akun Anda diblokir. Alasan: '+(ud.banned_reason||'Pelanggaran aturan'))}
+    currentUser={
+      phone:ud.phone,
+      name:ud.name,
+      avatar_url:ud.avatar_url||null,
+      banner_url:ud.banner_url||null,
+      is_premium:ud.is_premium||false
+    };
+    savePhone(ud.phone);
+    bannerName.textContent=currentUser.name;
+    loginScreen.classList.remove('active');
+    document.body.classList.remove('login-active');
+    showChatTab();
+    await loadContacts();
+    await loadStories();
+    subscribeStoriesRealtime();
+    registerOneSignal(ud.phone);
+  }catch(err){console.error(err);loginError.textContent='Gagal masuk: '+err.message}
+  finally{loginSubmit.disabled=false;loginSubmit.textContent='Masuk'}
+});
+phoneInput.addEventListener('keypress',function(e){if(e.key==='Enter')loginSubmit.click()});
+
+function registerOneSignal(phone){
+  try{
+    window.OneSignalDeferred=window.OneSignalDeferred||[];
+    OneSignalDeferred.push(async function(OneSignal){
+      try{
+        await OneSignal.login(phone);
+        var playerId=OneSignal.User.PushSubscription.id;
+        if(playerId){
+          await sb.from('users').update({push_player_id:playerId}).eq('phone',phone);
+        }
+        OneSignal.User.PushSubscription.addEventListener('change',async function(event){
+          if(event.current.id){
+            await sb.from('users').update({push_player_id:event.current.id}).eq('phone',phone);
+          }
+        });
+      }catch(e){console.log('OneSignal error',e)}
+    });
+  }catch(e){console.log('OneSignal not ready',e)}
+}
+
+async function loadStories(){
+  try{
+    var res=await sb.from('statuses').select('*').gt('expires_at',new Date().toISOString()).order('created_at',{ascending:false});
+    if(res.error)throw res.error;allStories=res.data||[];
+    if(allStories.length>0){
+      var phones=allStories.map(function(s){return s.user_phone}).filter(function(v,i,a){return a.indexOf(v)===i});
+      var uRes=await sb.from('users').select('phone,is_premium,avatar_url').in('phone',phones);
+      if(uRes.data){
+        var uMap={};uRes.data.forEach(function(u){uMap[u.phone]=u});
+        allStories.forEach(function(s){
+          s._premium=(uMap[s.user_phone]&&uMap[s.user_phone].is_premium)||false;
+          s._avatar=(uMap[s.user_phone]&&uMap[s.user_phone].avatar_url)||null;
+        });
+      }
+    }
+    groupAndRenderStories();
+  }catch(err){console.error(err)}
+}
+function groupAndRenderStories(){
+  var map={};
+  allStories.forEach(function(s){
+    if(!map[s.user_phone])map[s.user_phone]={user_phone:s.user_phone,user_name:s.user_name||'User',user_avatar:s._avatar||null,is_premium:s._premium||false,stories:[]};
+    map[s.user_phone].stories.push(s);
+  });
+  Object.keys(map).forEach(function(k){map[k].stories.sort(function(a,b){return new Date(b.created_at)-new Date(a.created_at)})});
+  groupedStories=Object.keys(map).map(function(k){return map[k]});
+  var myGroup=groupedStories.find(function(g){return g.user_phone===currentUser.phone});
+  var others=groupedStories.filter(function(g){return g.user_phone!==currentUser.phone});
+  renderStoriesUI(myGroup,others);
+}
+function renderStoriesUI(myGroup,others){
+  storiesContainer.innerHTML='';
+  var myCard=document.createElement('div');myCard.className='story-item';
+  var hasMy=myGroup&&myGroup.stories.length>0;
+  myCard.innerHTML='<div class="story-avatar"><div class="inner" style="background:#f5d76e;color:#1a1a1a;">'+(currentUser.avatar_url?'<img src="'+currentUser.avatar_url+'">':getInit(currentUser.name))+'</div>'+(hasMy?'':'<div class="plus">+</div>')+'</div><div class="story-name">'+(hasMy?'Status saya':'Story saya')+'</div>';
+  myCard.addEventListener('click',function(){if(hasMy)openStoryViewer(myGroup.user_phone);else openStoryUpload()});
+  storiesContainer.appendChild(myCard);
+  others.forEach(function(g){
+    var card=document.createElement('div');card.className='story-item';
+    var avHtml=g.user_avatar?'<img src="'+g.user_avatar+'">':getInit(g.user_name);
+    card.innerHTML='<div class="story-avatar"><div class="inner" style="background:#1a1a1a;color:#f5d76e;">'+avHtml+'</div></div><div class="story-name">'+renderName(g.user_name,g.is_premium)+'</div>';
+    card.addEventListener('click',function(){openStoryViewer(g.user_phone)});
+    storiesContainer.appendChild(card);
+  });
+}
+function subscribeStoriesRealtime(){
+  if(storyRealtimeChannel)return;
+  storyRealtimeChannel=sb.channel('statuses_changes').on('postgres_changes',{event:'*',schema:'public',table:'statuses'},function(){loadStories()}).subscribe();
+}
+
+function openStoryUpload(){
+  if(!currentUser)return;
+  storyMode='text';storyPrivacy='public';storyMediaFile=null;storyBgColor=BG_COLORS[0];
+  storyTextInput.value='';storyCaptionInput.value='';storyCharCount.textContent='0/20';storyMediaPreview.innerHTML='';
+  storyTextMode.style.display='block';storyMediaMode.style.display='none';storyUploadScreen.style.background=storyBgColor;
+  document.querySelectorAll('.mode-pill').forEach(function(p){p.classList.toggle('active',p.dataset.mode==='text')});
+  document.querySelectorAll('.privacy-pill').forEach(function(p){p.classList.toggle('active',p.dataset.privacy==='public')});
+  storyUploadScreen.classList.add('active');hideNav();
+  setTimeout(function(){storyTextInput.focus()},200);
+}
+storyCloseBtn.addEventListener('click',function(){storyUploadScreen.classList.remove('active');showChatTab()});
+storyPaletteBtn.addEventListener('click',function(){var i=BG_COLORS.indexOf(storyBgColor);var n=BG_COLORS[(i+1)%BG_COLORS.length];storyBgColor=n;storyUploadScreen.style.background=n});
+storyTextInput.addEventListener('input',function(){storyCharCount.textContent=this.value.length+'/20'});
+document.querySelectorAll('.mode-pill').forEach(function(p){
+  p.addEventListener('click',function(){
+    var m=this.dataset.mode;
+    if(m==='audio'){alert('Fitur audio belum tersedia');return}
+    storyMode=m;
+    document.querySelectorAll('.mode-pill').forEach(function(x){x.classList.toggle('active',x.dataset.mode===m)});
+    if(m==='text'){storyTextMode.style.display='block';storyMediaMode.style.display='none';storyMediaFile=null;setTimeout(function(){storyTextInput.focus()},100)}
+    else if(m==='image'){storyImageInput.click()}
+    else if(m==='video'){storyVideoInput.click()}
+  });
+});
+document.querySelectorAll('.privacy-pill').forEach(function(p){
+  p.addEventListener('click',function(){
+    storyPrivacy=this.dataset.privacy;
+    document.querySelectorAll('.privacy-pill').forEach(function(x){x.classList.toggle('active',x.dataset.privacy===storyPrivacy)});
+  });
+});
+storyImageInput.addEventListener('change',function(){
+  var f=this.files[0];if(!f)return;
+  if(f.size>10*1024*1024){alert('Maksimal 10MB');return}
+  storyMediaFile=f;var u=URL.createObjectURL(f);
+  storyMediaPreview.innerHTML='<img class="story-preview-media" src="'+u+'">';
+  storyTextMode.style.display='none';storyMediaMode.style.display='block';
+  setTimeout(function(){storyCaptionInput.focus()},150);storyImageInput.value='';
+});
+storyVideoInput.addEventListener('change',function(){
+  var f=this.files[0];if(!f)return;
+  if(f.size>30*1024*1024){alert('Maksimal 30MB');return}
+  storyMediaFile=f;var u=URL.createObjectURL(f);
+  storyMediaPreview.innerHTML='<video class="story-preview-media" src="'+u+'" controls muted></video>';
+  storyTextMode.style.display='none';storyMediaMode.style.display='block';
+  setTimeout(function(){storyCaptionInput.focus()},150);storyVideoInput.value='';
+});
+sendStoryBtn.addEventListener('click',async function(){
+  if(!currentUser)return;
+  sendStoryBtn.disabled=true;
+  try{
+    var content='',caption='';
+    if(storyMode==='text'){
+      content=storyTextInput.value.trim();
+      if(!content){alert('Isi status tidak boleh kosong');sendStoryBtn.disabled=false;return}
+    }else if(storyMode==='image'||storyMode==='video'){
+      if(!storyMediaFile){alert('Pilih file dulu');sendStoryBtn.disabled=false;return}
+      caption=storyCaptionInput.value.trim();
+      var ext=(storyMediaFile.name.split('.').pop()||'jpg').toLowerCase();
+      var path=currentUser.phone+'_'+Date.now()+'.'+ext;
+      var up=await sb.storage.from('status-media').upload(path,storyMediaFile,{contentType:storyMediaFile.type,upsert:true});
+      if(up.error)throw up.error;
+      var ud=sb.storage.from('status-media').getPublicUrl(path);
+      content=ud.data.publicUrl;
+    }
+    var ins=await sb.from('statuses').insert([{user_phone:currentUser.phone,user_name:currentUser.name,type:storyMode,content:content,caption:caption||null,background_color:storyBgColor,privacy:storyPrivacy}]);
+    if(ins.error)throw ins.error;
+    storyUploadScreen.classList.remove('active');showChatTab();await loadStories();
+  }catch(err){alert('Gagal upload: '+err.message)}
+  finally{sendStoryBtn.disabled=false}
+});
+
+function openStoryViewer(phone){
+  var i=groupedStories.findIndex(function(g){return g.user_phone===phone});
+  if(i===-1)return;
+  currentStoryUserIndex=i;currentStoryIndex=0;
+  storyViewer.classList.add('active');hideNav();renderCurrentStory();
+}
+async function renderCurrentStory(){
+  if(storyTimer){clearTimeout(storyTimer);storyTimer=null}
+  if(currentStoryUserIndex<0||currentStoryUserIndex>=groupedStories.length){closeStoryViewer();return}
+  var group=groupedStories[currentStoryUserIndex];
+  if(!group||!group.stories.length){closeStoryViewer();return}
+  if(currentStoryIndex<0){currentStoryUserIndex--;if(currentStoryUserIndex<0){currentStoryIndex=0;closeStoryViewer();return}var pg=groupedStories[currentStoryUserIndex];currentStoryIndex=pg.stories.length-1;renderCurrentStory();return}
+  if(currentStoryIndex>=group.stories.length){currentStoryUserIndex++;currentStoryIndex=0;if(currentStoryUserIndex>=groupedStories.length){closeStoryViewer();return}renderCurrentStory();return}
+  var story=group.stories[currentStoryIndex];var total=group.stories.length;
+  var isMine=currentUser&&group.user_phone===currentUser.phone;
+  storyViewerProgress.innerHTML='';
+  for(var i=0;i<total;i++){var b=document.createElement('div');b.className='bar'+(i<currentStoryIndex?' done':(i===currentStoryIndex?' active':''));b.innerHTML='<div class="fill"></div>';storyViewerProgress.appendChild(b)}
+  storyViewerAvatar.innerHTML=isMine?(currentUser.avatar_url?'<img src="'+currentUser.avatar_url+'">':getInit(currentUser.name)):(group.user_avatar?'<img src="'+group.user_avatar+'">':getInit(group.user_name));
+  storyViewerName.innerHTML=isMine?'Story saya':renderName(group.user_name,group.is_premium);
+  storyViewerTime.textContent=timeAgo(story.created_at);
+  storyViewerContentInner.innerHTML='';
+  if(story.type==='text'){
+    var d=document.createElement('div');d.className='story-viewer-text';d.textContent=story.content;storyViewerContentInner.appendChild(d);
+    storyViewer.style.background=story.background_color||'#f04e4e';
+    storyTimer=setTimeout(function(){currentStoryIndex++;renderCurrentStory()},5000);
+  }else if(story.type==='image'){
+    var img=document.createElement('img');img.className='story-viewer-media';img.src=story.content;storyViewerContentInner.appendChild(img);
+    storyViewer.style.background='#000';
+    if(story.caption){var c=document.createElement('div');c.className='story-viewer-caption';c.textContent=story.caption;storyViewerContentInner.appendChild(c)}
+    storyTimer=setTimeout(function(){currentStoryIndex++;renderCurrentStory()},5000);
+  }else if(story.type==='video'){
+    var v=document.createElement('video');v.className='story-viewer-media';v.src=story.content;v.autoplay=true;v.controls=true;v.playsInline=true;
+    v.onended=function(){currentStoryIndex++;renderCurrentStory()};storyViewerContentInner.appendChild(v);
+    storyViewer.style.background='#000';
+    if(story.caption){var c2=document.createElement('div');c2.className='story-viewer-caption';c2.textContent=story.caption;storyViewerContentInner.appendChild(c2)}
+    storyTimer=setTimeout(function(){currentStoryIndex++;renderCurrentStory()},15000);
+  }
+  deleteStoryBtn.style.display=isMine?'flex':'none';
+  if(!isMine)recordView(story.id);
+  await loadStoryMeta(story.id);
+}
+async function recordView(sid){
+  if(!currentUser)return;
+  try{await sb.from('story_views').upsert([{status_id:sid,viewer_phone:currentUser.phone,viewer_name:currentUser.name}],{onConflict:'status_id,viewer_phone'})}catch(e){}
+}
+async function loadStoryMeta(sid){
+  try{
+    var r=await Promise.all([
+      sb.from('story_views').select('*').eq('status_id',sid),
+      sb.from('story_reactions').select('*').eq('status_id',sid),
+      sb.from('story_reposts').select('*').eq('original_status_id',sid)
+    ]);
+    currentStoryViews=r[0].data||[];currentStoryReactions=r[1].data||[];currentStoryReposts=r[2].data||[];
+    viewersCount.textContent=currentStoryViews.length;lovesCount.textContent=currentStoryReactions.length;repostsCount.textContent=currentStoryReposts.length;
+    var iL=currentStoryReactions.some(function(r){return r.reactor_phone===currentUser.phone});loveBtn.classList.toggle('loved',iL);
+    var iR=currentStoryReposts.some(function(r){return r.reposter_phone===currentUser.phone});repostBtn.classList.toggle('repost-active',iR);
+  }catch(e){}
+}
+function closeStoryViewer(){storyViewer.classList.remove('active');if(storyTimer){clearTimeout(storyTimer);storyTimer=null}showNav()}
+storyViewerClose.addEventListener('click',closeStoryViewer);
+storyViewerPrev.addEventListener('click',function(){currentStoryIndex--;renderCurrentStory()});
+storyViewerNext.addEventListener('click',function(){currentStoryIndex++;renderCurrentStory()});
+
+loveBtn.addEventListener('click',async function(){
+  if(!currentUser)return;
+  var group=groupedStories[currentStoryUserIndex];if(!group)return;
+  var story=group.stories[currentStoryIndex];if(!story)return;
+  if(story.user_phone===currentUser.phone){alert('Tidak bisa suka status sendiri');return}
+  var iL=currentStoryReactions.some(function(r){return r.reactor_phone===currentUser.phone});
+  try{
+    if(iL){await sb.from('story_reactions').delete().eq('status_id',story.id).eq('reactor_phone',currentUser.phone)}
+    else{await sb.from('story_reactions').upsert([{status_id:story.id,reactor_phone:currentUser.phone,reactor_name:currentUser.name,emoji:'❤'}],{onConflict:'status_id,reactor_phone,emoji'})}
+    await loadStoryMeta(story.id);
+  }catch(err){alert('Gagal: '+err.message)}
+});
+viewersBtn.addEventListener('click',function(){
+  viewerModalTitle.textContent='Dilihat oleh ('+currentStoryViews.length+')';viewerModalList.innerHTML='';
+  if(currentStoryViews.length===0){viewerModalList.innerHTML='<div class="viewer-empty">Belum ada yang melihat</div>'}
+  else{currentStoryViews.forEach(function(v){var r=document.createElement('div');r.className='viewer-row';r.innerHTML='<div class="viewer-row-avatar">'+getInit(v.viewer_name)+'</div><div class="viewer-row-info"><div class="viewer-row-name">'+esc(v.viewer_name||'User')+'</div><div class="viewer-row-time">'+timeAgo(v.viewed_at)+'</div></div>';viewerModalList.appendChild(r)})}
+  viewerListModal.classList.add('active');
+});
+lovesCount.parentElement.addEventListener('click',function(){
+  viewerModalTitle.textContent='Disukai oleh ('+currentStoryReactions.length+')';viewerModalList.innerHTML='';
+  if(currentStoryReactions.length===0){viewerModalList.innerHTML='<div class="viewer-empty">Belum ada yang suka</div>'}
+  else{currentStoryReactions.forEach(function(r){var d=document.createElement('div');d.className='viewer-row';d.innerHTML='<div class="viewer-row-avatar">'+getInit(r.reactor_name)+'</div><div class="viewer-row-info"><div class="viewer-row-name">'+esc(r.reactor_name||'User')+'</div><div class="viewer-row-time">'+timeAgo(r.created_at)+'</div></div><div class="viewer-row-emoji">'+(r.emoji||'❤')+'</div>';viewerModalList.appendChild(d)})}
+  viewerListModal.classList.add('active');
+});
+repostsCount.parentElement.addEventListener('click',function(){
+  viewerModalTitle.textContent='Diposting ulang ('+currentStoryReposts.length+')';viewerModalList.innerHTML='';
+  if(currentStoryReposts.length===0){viewerModalList.innerHTML='<div class="viewer-empty">Belum ada repost</div>'}
+  else{currentStoryReposts.forEach(function(r){var d=document.createElement('div');d.className='viewer-row';d.innerHTML='<div class="viewer-row-avatar">'+getInit(r.reposter_name)+'</div><div class="viewer-row-info"><div class="viewer-row-name">'+esc(r.reposter_name||'User')+'</div><div class="viewer-row-time">'+timeAgo(r.reposted_at)+'</div></div>';viewerModalList.appendChild(d)})}
+  viewerListModal.classList.add('active');
+});
+repostBtn.addEventListener('click',async function(){
+  if(!currentUser)return;
+  var group=groupedStories[currentStoryUserIndex];if(!group)return;
+  var story=group.stories[currentStoryIndex];if(!story)return;
+  if(story.user_phone===currentUser.phone){alert('Status sendiri');return}
+  if(story.type!=='image'&&story.type!=='video'){alert('Hanya repost foto/video');return}
+  var iR=currentStoryReposts.some(function(r){return r.reposter_phone===currentUser.phone});
+  if(iR){alert('Sudah repost');return}
+  if(!confirm('Repost status ini?'))return;
+  try{
+    await sb.from('story_reposts').insert([{original_status_id:story.id,original_user_phone:story.user_phone,original_user_name:group.user_name,reposter_phone:currentUser.phone,reposter_name:currentUser.name,type:story.type,content:story.content,caption:story.caption||('Repost dari '+group.user_name)}]);
+    await sb.from('statuses').insert([{user_phone:currentUser.phone,user_name:currentUser.name,type:story.type,content:story.content,caption:story.caption||('Repost dari '+group.user_name),background_color:'#f04e4e',privacy:'public'}]);
+    alert('Berhasil repost');await loadStories();await loadStoryMeta(story.id);
+  }catch(err){alert('Gagal: '+err.message)}
+});
+deleteStoryBtn.addEventListener('click',async function(){
+  var group=groupedStories[currentStoryUserIndex];if(!group)return;
+  var story=group.stories[currentStoryIndex];if(!story)return;
+  if(story.user_phone!==currentUser.phone){alert('Hanya hapus sendiri');return}
+  if(!confirm('Hapus status ini?'))return;
+  try{await sb.from('statuses').delete().eq('id',story.id);closeStoryViewer();await loadStories()}catch(err){alert('Gagal: '+err.message)}
+});
+viewerModalClose.addEventListener('click',function(){viewerListModal.classList.remove('active')});
+viewerListModal.addEventListener('click',function(e){if(e.target===viewerListModal)viewerListModal.classList.remove('active')});
+
+async function loadContacts(){
+  if(!currentUser)return;
+  try{
+    var res=await sb.from('contacts').select('*').eq('owner_phone',currentUser.phone).order('contact_name',{ascending:true});
+    if(res.error)throw res.error;
+    contacts=res.data||[];
+    if(contacts.length>0){
+      var phones=contacts.map(function(c){return c.contact_phone});
+      var uRes=await sb.from('users').select('phone,is_premium,avatar_url').in('phone',phones);
+      if(uRes.data){
+        var uMap={};uRes.data.forEach(function(u){uMap[u.phone]=u});
+        contacts.forEach(function(c){
+          var u=uMap[c.contact_phone];
+          c.is_premium=(u&&u.is_premium)||false;
+          c.contact_avatar=(u&&u.avatar_url)||null;
+        });
+      }
+    }
+    renderContacts();
+  }catch(err){console.error(err)}
+}
+function renderContacts(ft){
+  var q=(ft||'').toLowerCase().trim();
+  var f=contacts.filter(function(c){if(!q)return true;return (c.contact_name||'').toLowerCase().indexOf(q)!==-1||(c.contact_phone||'').indexOf(q)!==-1});
+  chatList.innerHTML='';
+  if(f.length===0){chatList.innerHTML='<div class="empty-state">Belum ada kontak.<br>Tap tombol + untuk menambahkan kontak.</div>';return}
+  f.forEach(function(c){
+    var el=document.createElement('div');el.className='chat-item';
+    var avHtml=c.contact_avatar?'<img src="'+c.contact_avatar+'" style="width:100%;height:100%;object-fit:cover;">':getInit(c.contact_name);
+    el.innerHTML='<div class="chat-avatar">'+avHtml+'</div><div class="chat-info"><div class="chat-name"><span>'+renderName(c.contact_name,c.is_premium)+'</span><span class="phone">'+esc(c.contact_phone)+'</span></div><div class="chat-preview">Ketuk untuk mulai chat</div></div>';
+    el.addEventListener('click',function(){openChat(c)});chatList.appendChild(el);
+  });
+}
+searchInput.addEventListener('input',function(){renderContacts(this.value)});
+
+async function searchContact(){
+  var phone=normPhone(contactSearchInput.value);contactSearchResult.innerHTML='';
+  if(phone.length<8){contactSearchResult.innerHTML='<div class="add-contact-empty">Minimal 8 digit</div>';return}
+  if(phone===currentUser.phone){contactSearchResult.innerHTML='<div class="add-contact-empty">Itu nomor kamu</div>';return}
+  contactSearchResult.innerHTML='<div class="loading">Mencari...</div>';
+  try{
+    var res=await sb.from('users').select('*').eq('phone',phone).maybeSingle();
+    if(res.error)throw res.error;
+    if(!res.data){contactSearchResult.innerHTML='<div class="add-contact-empty">Nomor tidak ditemukan</div>';return}
+    var a=contacts.some(function(c){return c.contact_phone===res.data.phone});
+    renderResultCard(res.data,a);
+  }catch(err){contactSearchResult.innerHTML='<div class="add-contact-empty">Gagal: '+esc(err.message)+'</div>'}
+}
+function renderResultCard(user,already){
+  var av=user.avatar_url?'<img src="'+user.avatar_url+'">':getInit(user.name);
+  contactSearchResult.innerHTML='';
+  var card=document.createElement('div');card.className='result-card';
+  card.innerHTML='<div class="result-avatar">'+av+'</div><div class="result-info"><div class="result-name">'+renderName(user.name||'User',user.is_premium||false)+'</div><div class="result-phone">'+esc(fmtPhone(user.phone))+'</div></div><button class="result-action '+(already?'saved':'')+'" id="resultActionBtn">'+(already?'Tersimpan':'Simpan')+'</button>';
+  contactSearchResult.appendChild(card);
+  var btn=$('resultActionBtn');
+  if(already){btn.addEventListener('click',function(){var e=contacts.find(function(c){return c.contact_phone===user.phone});if(e){showChatTab();openChat(e)}});return}
+  btn.addEventListener('click',async function(){
+    btn.disabled=true;btn.textContent='Menyimpan...';
+    try{
+      var r=await sb.from('contacts').upsert([{owner_phone:currentUser.phone,contact_phone:user.phone,contact_name:user.name||('User '+user.phone.slice(-4))}],{onConflict:'owner_phone,contact_phone'});
+      if(r.error)throw r.error;btn.classList.add('saved');btn.textContent='Tersimpan';btn.disabled=false;
+      await loadContacts();
+    }catch(err){alert('Gagal: '+err.message);btn.disabled=false;btn.textContent='Simpan'}
+  });
+}
+searchContactBtn.addEventListener('click',searchContact);
+contactSearchInput.addEventListener('keypress',function(e){if(e.key==='Enter')searchContact()});
+
+async function openChat(c){
+  activeChat=c;roomName.innerHTML=renderName(c.contact_name,c.is_premium);roomAvatar.textContent=getInit(c.contact_name);roomStatus.textContent=c.contact_phone;
+  chatRoom.classList.add('active');hideNav();messagesArea.innerHTML='<div class="loading">Memuat pesan...</div>';
+  await loadMessages();subscribeChat(c.contact_phone);setTimeout(function(){messageInput.focus()},200);
+  (async function(){
+    try{
+      var r=await sb.from('users').select('is_premium,avatar_url,name').eq('phone',c.contact_phone).maybeSingle();
+      if(r.data){
+        c.is_premium=r.data.is_premium||false;
+        c.contact_avatar=r.data.avatar_url||null;
+        if(r.data.name)c.contact_name=r.data.name;
+        activeChat=c;
+        roomName.innerHTML=renderName(c.contact_name,c.is_premium);
+      }
+    }catch(e){}
+  })();
+}
+backBtn.addEventListener('click',function(){chatRoom.classList.remove('active');showNav();if(currentChatChannel){sb.removeChannel(currentChatChannel);currentChatChannel=null}activeChat=null});
+async function loadMessages(){
+  if(!currentUser||!activeChat)return;
+  try{
+    var me=currentUser.phone,other=activeChat.contact_phone;
+    var res=await sb.from('messages').select('*').or('and(sender_phone.eq.'+me+',receiver_phone.eq.'+other+'),and(sender_phone.eq.'+other+',receiver_phone.eq.'+me+')').order('created_at',{ascending:true}).limit(500);
+    if(res.error)throw res.error;
+    messagesArea.innerHTML='';
+    if(!res.data||res.data.length===0){messagesArea.innerHTML='<div class="loading">Belum ada pesan</div>'}
+    else{res.data.forEach(renderMsg);messagesArea.scrollTop=messagesArea.scrollHeight}
+  }catch(err){messagesArea.innerHTML='<div class="loading">Gagal: '+err.message+'</div>'}
+}
+function renderMsg(m){
+  var own=m.sender_phone===currentUser.phone;
+  var l=messagesArea.querySelector('.loading');if(l)l.remove();
+  var d=document.createElement('div');d.className='message '+(own?'own':'other');
+  if(!own){var s=document.createElement('div');s.className='sender';if(activeChat){s.innerHTML=renderName(activeChat.contact_name,activeChat.is_premium)}else{s.textContent=m.sender_phone}d.appendChild(s)}
+  var t=document.createElement('div');t.textContent=m.message;d.appendChild(t);
+  var tm=document.createElement('div');tm.className='time';tm.textContent=fmtTime(m.created_at);d.appendChild(tm);
+  messagesArea.appendChild(d);
+}
+async function sendMsg(){
+  var t=messageInput.value.trim();if(!t||!currentUser||!activeChat)return;
+  messageInput.value='';
+  try{var r=await sb.from('messages').insert([{sender_phone:currentUser.phone,receiver_phone:activeChat.contact_phone,message:t}]);if(r.error)throw r.error}catch(err){alert('Gagal: '+err.message)}
+}
+sendBtn.addEventListener('click',sendMsg);
+messageInput.addEventListener('keypress',function(e){if(e.key==='Enter')sendMsg()});
+function subscribeChat(other){
+  if(currentChatChannel){sb.removeChannel(currentChatChannel);currentChatChannel=null}
+  currentChatChannel=sb.channel('chat_'+currentUser.phone+'_'+other).on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},function(p){
+    var m=p.new;
+    var ok=(m.sender_phone===currentUser.phone&&m.receiver_phone===other)||(m.sender_phone===other&&m.receiver_phone===currentUser.phone);
+    if(ok){renderMsg(m);messagesArea.scrollTop=messagesArea.scrollHeight}
+  }).subscribe(function(s){if(s==='SUBSCRIBED')roomStatus.textContent='Online · '+other});
+}
+
+function renderProfile(){
+  if(!currentUser)return;
+  profileNameDisplay.innerHTML=renderName(currentUser.name,currentUser.is_premium);
+  profilePhoneDisplay.textContent=fmtPhone(currentUser.phone);
+  if(currentUser.banner_url){profileBanner.style.backgroundImage='url('+currentUser.banner_url+')';profileBanner.style.backgroundSize='cover';profileBanner.style.backgroundPosition='center'}
+  else{profileBanner.style.backgroundImage='none';profileBanner.style.background='#f5d76e'}
+  if(currentUser.avatar_url){profileAvatar.innerHTML='<img src="'+currentUser.avatar_url+'"><div class="edit-badge"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>'}
+  else{profileAvatar.innerHTML='<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a6 6 0 0 1 12 0v2"/></svg><div class="edit-badge"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>'}
+}
+[switchLastSeen,switchPrivateNumber].forEach(function(sw){sw.addEventListener('click',function(){sw.classList.toggle('on')})});
+
+editNameBtn.addEventListener('click',function(){newNameInput.value=currentUser.name;editNameError.textContent='';editNameModal.classList.add('active');setTimeout(function(){newNameInput.focus();newNameInput.select()},100)});
+cancelEditName.addEventListener('click',function(){editNameModal.classList.remove('active')});
+saveNewName.addEventListener('click',async function(){
+  var n=newNameInput.value.trim();editNameError.textContent='';
+  if(!n){editNameError.textContent='Nama tidak boleh kosong';return}
+  if(n===currentUser.name){editNameModal.classList.remove('active');return}
+  saveNewName.disabled=true;saveNewName.textContent='Menyimpan...';
+  try{
+    var r=await sb.from('users').update({name:n}).eq('phone',currentUser.phone);
+    if(r.error)throw r.error;
+    currentUser.name=n;bannerName.textContent=n;renderProfile();editNameModal.classList.remove('active');await loadStories();
+  }catch(err){editNameError.textContent='Gagal: '+err.message}
+  finally{saveNewName.disabled=false;saveNewName.textContent='Simpan'}
+});
+editProfileBtn.addEventListener('click',function(){editProfileModal.classList.add('active')});
+profileAvatar.addEventListener('click',function(){editProfileModal.classList.add('active')});
+closeEditProfile.addEventListener('click',function(){editProfileModal.classList.remove('active')});
+pickAvatarBtn.addEventListener('click',function(){avatarFileInput.click()});
+pickBannerBtn.addEventListener('click',function(){bannerFileInput.click()});
+changeBannerBtn.addEventListener('click',function(){bannerFileInput.click()});
+avatarFileInput.addEventListener('change',async function(){
+  var f=this.files[0];if(!f)return;
+  if(f.size>3*1024*1024){alert('Maks 3MB');return}
+  try{
+    pickAvatarBtn.disabled=true;pickAvatarBtn.textContent='Mengunggah...';
+    var ext=(f.name.split('.').pop()||'jpg').toLowerCase();
+    var path=currentUser.phone+'_'+Date.now()+'.'+ext;
+    var up=await sb.storage.from('avatars').upload(path,f,{upsert:true,contentType:f.type});if(up.error)throw up.error;
+    var ud=sb.storage.from('avatars').getPublicUrl(path);var url=ud.data.publicUrl;
+    var u=await sb.from('users').update({avatar_url:url}).eq('phone',currentUser.phone);if(u.error)throw u.error;
+    currentUser.avatar_url=url;renderProfile();await loadStories();editProfileModal.classList.remove('active');
+  }catch(err){alert('Gagal: '+err.message)}
+  finally{pickAvatarBtn.disabled=false;pickAvatarBtn.textContent='Ganti Foto Profil';avatarFileInput.value=''}
+});
+bannerFileInput.addEventListener('change',async function(){
+  var f=this.files[0];if(!f)return;
+  if(f.size>3*1024*1024){alert('Maks 3MB');return}
+  try{
+    pickBannerBtn.disabled=true;pickBannerBtn.textContent='Mengunggah...';
+    var ext=(f.name.split('.').pop()||'jpg').toLowerCase();
+    var path=currentUser.phone+'_'+Date.now()+'.'+ext;
+    var up=await sb.storage.from('banners').upload(path,f,{upsert:true,contentType:f.type});if(up.error)throw up.error;
+    var ud=sb.storage.from('banners').getPublicUrl(path);var url=ud.data.publicUrl;
+    var u=await sb.from('users').update({banner_url:url}).eq('phone',currentUser.phone);if(u.error)throw u.error;
+    currentUser.banner_url=url;renderProfile();editProfileModal.classList.remove('active');
+  }catch(err){alert('Gagal: '+err.message)}
+  finally{pickBannerBtn.disabled=false;pickBannerBtn.textContent='Ganti Wallpaper';bannerFileInput.value=''}
+});
+
+var savedPhone=getSavedPhone();
+if(savedPhone){
+  loginScreen.classList.add('active');
+  document.body.classList.add('login-active');
+  phoneInput.value=savedPhone;
+  setTimeout(function(){loginSubmit.click()},200);
+}else{
+  loginScreen.classList.add('active');
+  document.body.classList.add('login-active');
+  setTimeout(function(){phoneInput.focus()},300);
+}
+
+setInterval(function(){
+  if(currentUser)refreshUserData();
+},30000);
+
+console.log('GOJO WHATSAPP ready with OneSignal');
+})();
+</script>
+</body>
+</html>
